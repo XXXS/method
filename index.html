@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0,width=device-width,user-scalable=0,maximum-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>remt</title>
+    <script>
+        /* rem 自适应 */
+        // document.getElementsByTagName('html')[0].style.fontSize = (document.documentElement.clientWidth / 750) * 100 + "px";
+    document.querySelector('html').style.fontSize=(document.documentElement.clientWidth/750)*100+"px";
+    </script>
+    <style>
+        /* 兼容iphone X */
+        @media only screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) {}
+        *{padding: 0;margin: 0;}
+        div{text-align: center;font-size: 0.5rem;}
+    </style>
+</head>
+
+<body>
+      <div id="w"></div>      <div id="h"></div>      <div id="dpi"></div>      <div id="fs"></div>
+    <script>   
+      document.querySelector('#w').innerHTML ="宽 : "+ window.screen.width + "px";
+      document.querySelector('#h').innerHTML ="高 : " + window.screen.height + "px";
+      document.querySelector('#dpi').innerHTML = "dpi : " + window.devicePixelRatio;
+      document.querySelector('#fs').innerHTML = "fontSize="+document.getElementsByTagName('html')[0].style.fontSize;
+   
+    </script>
+</body>
+
+</html>
