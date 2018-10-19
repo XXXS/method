@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0,width=device-width,user-scalable=0,maximum-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>dpi 分辨率 检测</title>
+    <script>
+        document.querySelector('html').style.fontSize = (document.documentElement.clientWidth / 750) * 100 + "px";
+    </script>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            background-color: black;
+        }
+
+        .container {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            font-family: 黑体;
+
+            color: #fff;
+        }
+
+        div {
+            text-align: center;
+            font-size: 0.5rem;
+            margin: .2rem 0;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: .6rem;
+            margin: 1rem 0 .2rem 0;
+        }
+
+        #ua {
+            text-align: left;
+            padding: .2rem;
+        }
+
+        /* 兼容iphone X */
+        @media only screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) {}
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>设备检测</h1>
+        <hr>
+        <div id="w"></div>
+        <div id="h"></div>
+        <div id="dpi"></div>
+        <p id="test"></p>
+        <hr>
+        <p id="ua"></p>
+    </div>
+    <script>
+        document.querySelector('#w').innerHTML = "宽 : " + window.screen.width + "px";
+        document.querySelector('#h').innerHTML = "高 : " + window.screen.height + "px";
+        document.querySelector('#dpi').innerHTML = "dpi : " + window.devicePixelRatio;
+        document.querySelector('#ua').innerHTML = window.navigator.userAgent.split("/")[1].replace(/5.0/g, "")
+        var u = navigator.userAgent;
+        var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android
+        var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios
+        var agent = navigator.userAgent.toLowerCase();
+        var version;
+        if (isiOS) {
+            if (agent.indexOf("like mac os x") > 0) {
+                var regStr_saf = /os [\d._]*/gi;
+                var verinfo = agent.match(regStr_saf);
+                version = (verinfo + "").replace(/[^0-9|_.]/ig, "").replace(/_/ig, ".");
+                document.querySelector("#test").innerHTML = " IOS : " + version
+            }
+        }
+
+        if (isAndroid) {
+            document.querySelector("#test").innerHTML = agent.match(/android\s([0-9\.]*)/)[0].replace(/a/g, "A")
+        }
+
+    </script>
+</body>
+
+</html>
